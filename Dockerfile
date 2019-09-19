@@ -6,7 +6,7 @@ LABEL "de.technologiestiftung-berlin"="Technologiestiftung Berlin"
 # LABEL description="TODO"
 ARG BUILD_DATE
 ENV BUILD_DATE $BUILD_DATE
-RUN  /bin/bash -c "[[ -z ${BUILD_DATE} ]] && exit 1 || MRAN=https://mran.microsoft.com/snapshot/${BUILD_DATE} && echo \"repo = '$MRAN'\""
+# RUN  /bin/bash -c "[[ -z ${BUILD_DATE} ]] && exit 1 || MRAN=https://mran.microsoft.com/snapshot/${BUILD_DATE} && echo \"repo = '$MRAN'\""
 ENV MAKEFLAGS="-j 2"
 ENV MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
 RUN mkdir -p ~/.R/ \
