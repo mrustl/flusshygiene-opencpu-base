@@ -6,6 +6,7 @@ LABEL "de.technologiestiftung-berlin"="Technologiestiftung Berlin"
 # LABEL description="TODO"
 ARG BUILD_DATE
 ENV BUILD_DATE $BUILD_DATE
+RUN MRAN=https://mran.microsoft.com/snapshot/${BUILD_DATE} && echo "repo = '$MRAN'"
 ENV MAKEFLAGS="-j 2"
 ENV MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
 RUN mkdir -p ~/.R/ \
@@ -19,7 +20,6 @@ RUN add-apt-repository ppa:ubuntu-toolchain-r/test && apt-get update \
 # RUN echo https://mran.microsoft.com/snapshot/${BUILD_DATE}
 # RUN BUILD_DATE=$(TZ="Europe/Berlin" date -I) &&
 
-RUN MRAN=https://mran.microsoft.com/snapshot/${BUILD_DATE} && echo "repo = '$MRAN'"
 RUN MRAN=https://mran.microsoft.com/snapshot/${BUILD_DATE} && \
  R -e "install.packages(c(\"remotes\", \"rstanarm\", \"sf\", \"fs\", \"raster\", \"sp\", \"lubridate\", \"httr\", \"Rcpp\", \"curl\"), repo = '$MRAN' );"
 
